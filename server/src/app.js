@@ -2,7 +2,8 @@ const express = require("express");
 const morgan=require('morgan');
 const createError = require('http-errors');
 const xssClean = require('xss-clean')
-const rateLimit = require('express-rate-limit')
+const rateLimit = require('express-rate-limit');
+const userRouter = require("./router/userRouter");
 
 const app=express();
 
@@ -20,6 +21,8 @@ app.use(express.json());//built in middelware for handeling json data file
 app.use(express.urlencoded({extended: true}))//middleware for handeling form
 
 
+app.use('/api/user',userRouter);
+
 
 app.get("/test",rateLimiter,(req,res)=>{
     res.status(200).send({
@@ -27,12 +30,6 @@ app.get("/test",rateLimiter,(req,res)=>{
     });
 });
 
-app.get("/api/user",(req,res)=>{
-    console.log(req.body.id);
-    res.status(200).send({
-        message:'user profile is returned',
-    })
-});
 
 // client error handeling
 app.use((req,res,next)=>{
