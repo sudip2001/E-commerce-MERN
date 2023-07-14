@@ -9,3 +9,6 @@
 9.how to secure API--xss clean,express-rate-limit
 10.environment valiable and gitignore
 11.MVC architechture
+13.Connect MongoDB database
+14.Schema & Model--bycrpt
+15.create seed route for testing
